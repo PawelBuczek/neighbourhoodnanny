@@ -14,7 +14,7 @@ public class ChildCareEvent {
     private LocalDateTime endTime;
     @ManyToOne(fetch = FetchType.EAGER)
     private List<Child> children;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Location location;
 
     public ChildCareEvent(String name, LocalDateTime startTime, LocalDateTime endTime, List<Child> children, Location location) {
