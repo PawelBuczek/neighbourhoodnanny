@@ -13,13 +13,13 @@ public class Child {
     private String lastName;
     private int age;
     @ManyToOne
-    private Babysitter babysitters;
+    private Babysitter babysitter;
 
-    public Child(String firstName, String lastName, int age, Babysitter babysitters) {
+    public Child(String firstName, String lastName, int age, Babysitter babysitter) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.babysitters = babysitters;
+        this.babysitter = babysitter;
     }
 
     public Child() {
@@ -53,12 +53,12 @@ public class Child {
         this.age = age;
     }
 
-    public Babysitter getBabysitters() {
-        return babysitters;
+    public Babysitter getBabysitter() {
+        return babysitter;
     }
 
-    public void setBabysitters(Babysitter babysitters) {
-        this.babysitters = babysitters;
+    public void setBabysitter(Babysitter babysitters) {
+        this.babysitter = babysitters;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Child {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", babysitters=" + babysitters +
+                ", babysitters=" + babysitter +
                 '}';
     }
 }
