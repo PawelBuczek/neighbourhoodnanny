@@ -1,20 +1,24 @@
 package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
 
+import pl.sdacademy.neighbourhoodnanny.child.Child;
+import pl.sdacademy.neighbourhoodnanny.location.Location;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class ChildCareEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Child> children;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Location location;
 
     public ChildCareEvent(String name, LocalDateTime startTime, LocalDateTime endTime, List<Child> children, Location location) {
@@ -29,11 +33,11 @@ public class ChildCareEvent {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -86,13 +90,13 @@ public class ChildCareEvent {
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, name, startTime, endTime, children, location);
+        return Objects.hash(id, name, startTime, endTime, children, location);
     }
 
     @Override
     public String toString() {
         return "ChildCareEvent{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
