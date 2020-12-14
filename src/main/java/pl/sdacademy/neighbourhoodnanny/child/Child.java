@@ -12,14 +12,11 @@ public class Child {
     private String firstName;
     private String lastName;
     private int age;
-    @ManyToOne
-    private Babysitter babysitter;
 
-    public Child(String firstName, String lastName, int age, Babysitter babysitter) {
+    public Child(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.babysitter = babysitter;
     }
 
     public Child() {
@@ -53,14 +50,6 @@ public class Child {
         this.age = age;
     }
 
-    public Babysitter getBabysitter() {
-        return babysitter;
-    }
-
-    public void setBabysitter(Babysitter babysitters) {
-        this.babysitter = babysitters;
-    }
-
     @Override
     public String toString() {
         return "Child{" +
@@ -68,7 +57,6 @@ public class Child {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", babysitters=" + babysitter +
                 '}';
     }
 }

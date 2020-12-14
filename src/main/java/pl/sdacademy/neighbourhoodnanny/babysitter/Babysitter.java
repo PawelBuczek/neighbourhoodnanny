@@ -1,5 +1,7 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 
@@ -17,13 +19,17 @@ public class Babysitter {
     private String eMail;
     @OneToMany (fetch = FetchType.EAGER)
     private List<ChildCareEvent> eventList;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Child> children;
 
-    public Babysitter(String firstName, String lastName, String phoneNumber, String eMail, List<ChildCareEvent> eventList) {
+
+    public Babysitter(String firstName, String lastName, String phoneNumber, String eMail, List<ChildCareEvent> eventList, List<Child> children) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
         this.eventList = eventList;
+        this.children = children;
     }
 
     public Babysitter() {
@@ -85,5 +91,13 @@ public class Babysitter {
                 ", eMail='" + eMail + '\'' +
                 ", eventList=" + eventList +
                 '}';
+    }
+
+    public List<Child> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Child> children) {
+        this.children = children;
     }
 }
