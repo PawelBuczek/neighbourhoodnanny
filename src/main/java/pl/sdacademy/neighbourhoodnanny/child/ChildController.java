@@ -17,6 +17,10 @@ public class ChildController {
     public List<Child> getAll() {
         return childRepository.findAll();
     }
+    @PostMapping
+    public Child add(@RequestBody Child child) {
+        return childRepository.save(child);
+    }
 
     @GetMapping("/{id}")
     public Child getById(@PathVariable long id) {
