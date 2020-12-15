@@ -7,6 +7,7 @@ import pl.sdacademy.neighbourhoodnanny.child.*;
 import pl.sdacademy.neighbourhoodnanny.location.*;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component
@@ -25,9 +26,9 @@ public class DbInit {
 
     @PostConstruct
     public void onInit() {
-        Child child1 = new Child("Jaś", "Buczek", 12);
-        Child child2 = new Child("Kunegunda", "Buczek", 7);
-        Child child3 = new Child("Krzyś", "Gagucki", 9);
+        Child child1 = new Child("Jaś", "Buczek", LocalDate.of(2008,11,23));
+        Child child2 = new Child("Kunegunda", "Buczek", LocalDate.of(2011,5,11));
+        Child child3 = new Child("Krzyś", "Gagucki", LocalDate.of(2014,1,30));
         childRepository.save(child1);
         childRepository.save(child2);
         childRepository.save(child3);

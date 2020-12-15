@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Child {
@@ -12,12 +13,12 @@ public class Child {
     private Long id;
     private String firstName;
     private String lastName;
-    private int age;
+    private LocalDate birthDate;
 
-    public Child(String firstName, String lastName, int age) {
+    public Child(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthDate = birthDate;
     }
 
     public Child() {
@@ -43,12 +44,12 @@ public class Child {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Child {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }
