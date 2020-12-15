@@ -1,8 +1,10 @@
 package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -32,5 +34,16 @@ public class ChildCareEventController {
     @DeleteMapping("/{id}")
     public void deleteAccount(@PathVariable long id) {
         childCareEventRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updateChildCareEvent(@PathVariable long id, @RequestBody ChildCareEvent childCareEvent) {
+        Optional<ChildCareEvent> childCareEventOptional = childCareEventRepository.findById(id);
+        if (!childCareEventOptional.isPresent()) {
+            System.out.println("Event with id: " + id + " not found");
+        }
+        childCareEvent.setId(id);
+        childCareEventRepository.save(childCareEvent);
+
     }
 }
