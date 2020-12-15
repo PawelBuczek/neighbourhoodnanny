@@ -6,6 +6,7 @@ import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,15 @@ public class Babysitter {
         this.eMail = eMail;
         this.eventList = eventList;
         this.children = children;
+    }
+
+    public Babysitter(String firstName, String lastName, String phoneNumber, String eMail) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.eMail = eMail;
+        this.eventList = new ArrayList<>();
+        this.children = new ArrayList<>();
     }
 
     public Babysitter() {
