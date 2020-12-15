@@ -1,7 +1,5 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 
@@ -17,29 +15,33 @@ public class Babysitter {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String eMail;
+    private String email;
     @OneToMany (fetch = FetchType.EAGER)
     private List<ChildCareEvent> eventList;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Child> children;
 
 
-    public Babysitter(String firstName, String lastName, String phoneNumber, String eMail, List<ChildCareEvent> eventList, List<Child> children) {
+    public Babysitter(String firstName, String lastName, String phoneNumber, String email, List<ChildCareEvent> eventList, List<Child> children) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.eMail = eMail;
+        this.email = email;
         this.eventList = eventList;
         this.children = children;
     }
 
-    public Babysitter(String firstName, String lastName, String phoneNumber, String eMail) {
+    public Babysitter(String firstName, String lastName, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.eMail = eMail;
+        this.email = email;
         this.eventList = new ArrayList<>();
         this.children = new ArrayList<>();
+    }
+
+    public void addChild(Child child) {
+        children.add(child);
     }
 
     public Babysitter() {
@@ -74,12 +76,12 @@ public class Babysitter {
         this.phoneNumber = phoneNumber;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String geteEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void seteEmail(String eMail) {
+        this.email = eMail;
     }
 
 
@@ -98,7 +100,7 @@ public class Babysitter {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", eMail='" + email + '\'' +
                 ", eventList=" + eventList +
                 '}';
     }

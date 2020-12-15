@@ -5,6 +5,7 @@ import pl.sdacademy.neighbourhoodnanny.location.Location;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,6 +28,18 @@ public class ChildCareEvent {
         this.endTime = endTime;
         this.children = children;
         this.location = location;
+    }
+
+    public ChildCareEvent(String name, LocalDateTime startTime, LocalDateTime endTime, Location location) {
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.children = new ArrayList<>();
+        this.location = location;
+    }
+
+    public void addChild(Child child) {
+        children.add(child);
     }
 
     public ChildCareEvent() {
