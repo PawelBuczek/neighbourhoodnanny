@@ -1,9 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,10 @@ public class BabysitterController {
     @GetMapping("/{id}")
     public Babysitter getById(@PathVariable long id) {
         return babysitterRepository.findById(id).orElse(null);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAccount(@PathVariable long id) {
+        babysitterRepository.deleteById(id);
     }
 }

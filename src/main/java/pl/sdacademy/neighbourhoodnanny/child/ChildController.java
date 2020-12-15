@@ -1,9 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.child;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +23,8 @@ public class ChildController {
         return childRepository.findById(id).orElse(null);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteAccount(@PathVariable long id) {
+        childRepository.deleteById(id);
+    }
 }
