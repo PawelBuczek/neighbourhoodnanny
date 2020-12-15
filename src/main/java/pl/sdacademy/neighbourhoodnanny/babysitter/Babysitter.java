@@ -1,7 +1,5 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 

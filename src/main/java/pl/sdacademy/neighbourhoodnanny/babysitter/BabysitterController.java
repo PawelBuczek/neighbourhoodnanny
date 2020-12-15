@@ -1,6 +1,7 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +15,14 @@ public class BabysitterController {
     public BabysitterController(BabysitterRepository babysitterRepository) {
         this.babysitterRepository = babysitterRepository;
     }
+
     @GetMapping
     public List<Babysitter> getAll() {
         return babysitterRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Babysitter getById(@PathVariable long id) {
+        return babysitterRepository.findById(id).orElse(null);
     }
 }
