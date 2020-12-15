@@ -18,6 +18,11 @@ public class ChildCareEventController {
         return childCareEventRepository.findAll();
     }
 
+    @PostMapping
+    public ChildCareEvent add(@RequestBody ChildCareEvent childCareEvent) {
+        return childCareEventRepository.save(childCareEvent);
+    }
+
     @GetMapping("/{id}")
     public ChildCareEvent getById(@PathVariable long id) {
         return childCareEventRepository.findById(id).orElse(null);
