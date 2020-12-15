@@ -43,6 +43,10 @@ public class Babysitter {
     public Babysitter() {
     }
 
+    public void addChild(Child child) {
+        children.add(child);
+    }
+
     public Long getId() {
         return id;
     }
