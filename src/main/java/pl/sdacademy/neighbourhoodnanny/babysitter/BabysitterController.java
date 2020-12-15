@@ -18,6 +18,11 @@ public class BabysitterController {
         return babysitterRepository.findAll();
     }
 
+    @PostMapping
+    public Babysitter add(@RequestBody Babysitter babysitter){
+        return babysitterRepository.save(babysitter);
+    }
+
     @GetMapping("/{id}")
     public Babysitter getById(@PathVariable long id) {
         return babysitterRepository.findById(id).orElse(null);
