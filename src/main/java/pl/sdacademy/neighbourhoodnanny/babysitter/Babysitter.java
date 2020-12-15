@@ -16,9 +16,9 @@ public class Babysitter {
     private String lastName;
     private String phoneNumber;
     private String email;
-    @OneToMany (fetch = FetchType.EAGER)
+    @OneToMany
     private List<ChildCareEvent> eventList;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     private List<Child> children;
 
 
@@ -38,10 +38,6 @@ public class Babysitter {
         this.email = email;
         this.eventList = new ArrayList<>();
         this.children = new ArrayList<>();
-    }
-
-    public void addChild(Child child) {
-        children.add(child);
     }
 
     public Babysitter() {
