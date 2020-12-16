@@ -76,11 +76,11 @@ public class Babysitter {
         this.phoneNumber = phoneNumber;
     }
 
-    public String geteEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void seteEmail(String eMail) {
+    public void setEmail(String eMail) {
         this.email = eMail;
     }
 
