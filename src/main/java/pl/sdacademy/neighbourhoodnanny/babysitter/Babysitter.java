@@ -47,6 +47,10 @@ public class Babysitter {
         children.add(child);
     }
 
+    public void removeChild(Child child) {
+        children.remove(child);
+    }
+
     public Long getId() {
         return id;
     }
