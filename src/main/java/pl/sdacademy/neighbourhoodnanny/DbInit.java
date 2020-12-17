@@ -45,8 +45,8 @@ public class DbInit {
         babysitterRepository.save(babysitter1);
         babysitterRepository.save(babysitter2);
 
-        Location location1 = new Location("Jemiolowa 17, Wroclaw");
-        Location location2 = new Location("Glowna 5a, Katowice");
+        Location location1 = new Location("Jemiolowa 17", "Wroclaw", "00-000");
+        Location location2 = new Location("Glowna 5a", "Katowice", "11-111");
         locationRepository.save(location1);
         locationRepository.save(location2);
 
