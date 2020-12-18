@@ -40,7 +40,7 @@ public class BabysitterController {
     }
 
     @DeleteMapping("/{id}/child/{childId}")
-    public void delete(@PathVariable long id, @PathVariable long childId) {
+    public void deleteChild(@PathVariable long id, @PathVariable long childId) {
         Optional<Babysitter> babysitter = babysitterRepository.findById(id);
         Optional<Child> child = childRepository.findById(childId);
         if (babysitter.isPresent() && child.isPresent()) {
