@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
+package pl.sdacademy.neighbourhoodnanny.childcareevent;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +32,7 @@ public class ChildCareEventController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAccount(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         childCareEventRepository.deleteById(id);
     }
 

@@ -29,7 +29,7 @@ public class LocationController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAccount(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         locationRepository.deleteById(id);
     }
 }

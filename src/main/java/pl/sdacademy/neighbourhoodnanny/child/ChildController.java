@@ -29,7 +29,7 @@ public class ChildController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAccount(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         childRepository.deleteById(id);
     }
 }
