@@ -1,7 +1,7 @@
 package pl.sdacademy.neighbourhoodnanny;
 
 import org.springframework.stereotype.Component;
-import pl.sdacademy.neighbourhoodnanny.childcareevent.*;
+import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.*;
 import pl.sdacademy.neighbourhoodnanny.babysitter.*;
 import pl.sdacademy.neighbourhoodnanny.child.*;
 import pl.sdacademy.neighbourhoodnanny.location.*;

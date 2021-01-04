@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny.childcareevent;
+package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

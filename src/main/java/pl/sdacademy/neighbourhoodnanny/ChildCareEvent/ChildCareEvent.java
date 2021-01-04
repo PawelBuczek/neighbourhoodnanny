@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny.childcareevent;
+package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
 
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.location.Location;

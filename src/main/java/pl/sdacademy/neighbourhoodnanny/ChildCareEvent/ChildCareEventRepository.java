@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny.childcareevent;
+package pl.sdacademy.neighbourhoodnanny.ChildCareEvent;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
