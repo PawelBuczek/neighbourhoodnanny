@@ -2,5 +2,5 @@ package pl.sdacademy.neighbourhoodnanny.location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LocationRepository extends JpaRepository<Location,Long> {
+public interface LocationRepository extends JpaRepository<Location, Long> {
 }

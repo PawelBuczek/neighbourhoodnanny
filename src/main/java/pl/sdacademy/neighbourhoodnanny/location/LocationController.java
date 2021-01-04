@@ -18,8 +18,9 @@ public class LocationController {
     public List<Location> getAll() {
         return locationRepository.findAll();
     }
+
     @PostMapping
-    public Location add(@RequestBody Location location){
+    public Location add(@RequestBody Location location) {
         return locationRepository.save(location);
     }
 

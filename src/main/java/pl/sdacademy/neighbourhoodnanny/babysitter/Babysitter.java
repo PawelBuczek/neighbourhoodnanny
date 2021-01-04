@@ -1,7 +1,7 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
-import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
+import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 
 import javax.persistence.*;
 import java.util.ArrayList;

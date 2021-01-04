@@ -1,10 +1,14 @@
 package pl.sdacademy.neighbourhoodnanny;
 
 import org.springframework.stereotype.Component;
-import pl.sdacademy.neighbourhoodnanny.ChildCareEvent.*;
-import pl.sdacademy.neighbourhoodnanny.babysitter.*;
-import pl.sdacademy.neighbourhoodnanny.child.*;
-import pl.sdacademy.neighbourhoodnanny.location.*;
+import pl.sdacademy.neighbourhoodnanny.babysitter.Babysitter;
+import pl.sdacademy.neighbourhoodnanny.babysitter.BabysitterRepository;
+import pl.sdacademy.neighbourhoodnanny.child.Child;
+import pl.sdacademy.neighbourhoodnanny.child.ChildRepository;
+import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
+import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEventRepository;
+import pl.sdacademy.neighbourhoodnanny.location.Location;
+import pl.sdacademy.neighbourhoodnanny.location.LocationRepository;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -26,9 +30,9 @@ public class DbInit {
 
     @PostConstruct
     public void onInit() {
-        Child child1 = new Child("Jaś", "Buczek", LocalDate.of(2008,11,23));
-        Child child2 = new Child("Kunegunda", "Buczek", LocalDate.of(2011,5,11));
-        Child child3 = new Child("Krzyś", "Gagucki", LocalDate.of(2014,1,30));
+        Child child1 = new Child("Jaś", "Buczek", LocalDate.of(2008, 11, 23));
+        Child child2 = new Child("Kunegunda", "Buczek", LocalDate.of(2011, 5, 11));
+        Child child3 = new Child("Krzyś", "Gagucki", LocalDate.of(2014, 1, 30));
         childRepository.save(child1);
         childRepository.save(child2);
         childRepository.save(child3);
