@@ -48,4 +48,19 @@ public class BabysitterController {
             babysitterRepository.save(babysitter.get());
         }
     }
+
+    @PutMapping("/{id}")
+    public Babysitter updateBabysitter(@RequestBody Babysitter newBabysitter, @PathVariable Long id) {
+        babysitterRepository.findById(id).map(babysitter -> {
+            babysitter.setFirstName(newBabysitter.getFirstName());
+            babysitter.setLastName(newBabysitter.getLastName());
+            babysitter.setChildren(newBabysitter.getChildren());
+            babysitter.setEmail(newBabysitter.getEmail());
+            babysitter.setPhoneNumber(newBabysitter.getPhoneNumber());
+            babysitter.setEventList(newBabysitter.getEventList());
+            return babysitterRepository.save(babysitter);
+        });
+
+        return null;
+    }
 }
