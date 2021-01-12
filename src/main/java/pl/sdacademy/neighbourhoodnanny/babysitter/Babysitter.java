@@ -1,6 +1,5 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
-import org.springframework.format.annotation.NumberFormat;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 
@@ -15,15 +14,14 @@ public class Babysitter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 1,max = 100)
+    @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String firstName;
-    @Size(min = 1,max = 100)
+    @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String lastName;
-    @Size(min = 3,max = 15)
-    @NumberFormat
+    @Size(min = 3,max = 15, message = "has to be between 3 and 15 digits")
     private String phoneNumber;
-    @Size(min = 1,max = 300)
-    @Email
+    @Size(min = 1,max = 300, message = "has to be between 1 and 300 characters")
+    @Email(message = "has to be a valid email address")
     private String email;
     @OneToMany
     private List<ChildCareEvent> eventList;
