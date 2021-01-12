@@ -1,9 +1,12 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
+import org.springframework.format.annotation.NumberFormat;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +15,15 @@ public class Babysitter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 1,max = 100)
     private String firstName;
+    @Size(min = 1,max = 100)
     private String lastName;
+    @Size(min = 3,max = 15)
+    @NumberFormat
     private String phoneNumber;
+    @Size(min = 1,max = 300)
+    @Email
     private String email;
     @OneToMany
     private List<ChildCareEvent> eventList;

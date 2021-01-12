@@ -1,5 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.child.ChildRepository;
@@ -25,7 +26,7 @@ public class BabysitterController {
     }
 
     @PostMapping
-    public Babysitter add(@RequestBody Babysitter babysitter) {
+    public Babysitter add(@Validated @RequestBody Babysitter babysitter) {
         return babysitterRepository.save(babysitter);
     }
 
@@ -50,7 +51,7 @@ public class BabysitterController {
     }
 
     @PutMapping("/{id}")
-    public Babysitter updateBabysitter(@RequestBody Babysitter newBabysitter, @PathVariable Long id) {
+    public Babysitter updateBabysitter(@Validated @RequestBody Babysitter newBabysitter, @PathVariable Long id) {
         babysitterRepository.findById(id).map(babysitter -> {
             babysitter.setFirstName(newBabysitter.getFirstName());
             babysitter.setLastName(newBabysitter.getLastName());
