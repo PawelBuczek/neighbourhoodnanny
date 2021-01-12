@@ -36,7 +36,7 @@ public class ChildCareEventController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, @RequestBody ChildCareEvent childCareEvent) {
+    public void update(@RequestBody ChildCareEvent childCareEvent, @PathVariable long id) {
         Optional<ChildCareEvent> childCareEventOptional = childCareEventRepository.findById(id);
         if (!childCareEventOptional.isPresent()) {
             System.out.println("Event with id: " + id + " not found");

@@ -51,7 +51,7 @@ public class BabysitterController {
     }
 
     @PutMapping("/{id}")
-    public Babysitter updateBabysitter(@Validated @RequestBody Babysitter newBabysitter, @PathVariable Long id) {
+    public void updateBabysitter(@Validated @RequestBody Babysitter newBabysitter, @PathVariable Long id) {
         babysitterRepository.findById(id).map(babysitter -> {
             babysitter.setFirstName(newBabysitter.getFirstName());
             babysitter.setLastName(newBabysitter.getLastName());
@@ -62,6 +62,5 @@ public class BabysitterController {
             return babysitterRepository.save(babysitter);
         });
 
-        return null;
     }
 }
