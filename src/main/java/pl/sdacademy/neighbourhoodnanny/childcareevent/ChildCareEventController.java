@@ -43,6 +43,5 @@ public class ChildCareEventController {
         }
         childCareEvent.setId(id);
         childCareEventRepository.save(childCareEvent);
-
     }
 }

@@ -1,5 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.child;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +33,16 @@ public class ChildController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         childRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Child updateChild(@Validated @RequestBody Child newChild, @PathVariable Long id) {
+        childRepository.findById(id).map(child -> {
+            child.setFirstName(newChild.getFirstName());
+            child.setLastName(newChild.getLastName());
+            child.setBirthDate(newChild.getBirthDate());
+            return childRepository.save(child);
+        });
+        return newChild;
     }
 }
