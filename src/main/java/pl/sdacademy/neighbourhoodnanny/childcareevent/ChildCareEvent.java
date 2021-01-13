@@ -1,9 +1,11 @@
 package pl.sdacademy.neighbourhoodnanny.childcareevent;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.location.Location;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,11 @@ public class ChildCareEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String name;
+    @DateTimeFormat(pattern= "DD-MM-YYYY")
     private LocalDateTime startTime;
+    @DateTimeFormat(pattern= "DD-MM-YYYY")
     private LocalDateTime endTime;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Child> children;

@@ -1,9 +1,12 @@
 package pl.sdacademy.neighbourhoodnanny.child;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -11,8 +14,11 @@ public class Child {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String firstName;
+    @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String lastName;
+    @DateTimeFormat(pattern= "DD-MM-YYYY")
     private LocalDate birthDate;
 
     public Child(String firstName, String lastName, LocalDate birthDate) {
