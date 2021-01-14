@@ -26,8 +26,11 @@ public class BabysitterController {
     }
 
     @PostMapping
-    public Babysitter add(@Validated @RequestBody Babysitter babysitter) {
-        return babysitterRepository.save(babysitter);
+    public void add(@Validated @RequestBody Babysitter babysitter) {
+        Babysitter babysitter1 = new Babysitter(babysitter.getFirstName(),babysitter.getLastName(),babysitter.getPhoneNumber(),babysitter.getEmail());
+        Babysitter babysitter2 = new Babysitter("asdz", "asdqqq", "453654654", "qqq@aa");
+        babysitterRepository.save(babysitter1);
+        babysitterRepository.save(babysitter2);
     }
 
     @GetMapping("/{id}")
