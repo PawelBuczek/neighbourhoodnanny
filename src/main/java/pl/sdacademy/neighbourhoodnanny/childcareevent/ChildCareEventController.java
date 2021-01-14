@@ -30,11 +30,12 @@ public class ChildCareEventController {
     }
 
     @PostMapping("/dto")
-    public void addEventWithLocation(@RequestBody ChildCareEventLocationDTO DTO) {
-        Location location = new Location(DTO.getStreet(), DTO.getPostalCode(), DTO.getCity());
+    public ChildCareEventLocationDTO addEventWithLocation(@RequestBody ChildCareEventLocationDTO DTO) {
+        Location location = new Location(DTO.getStreet(), DTO.getCity(), DTO.getPostalCode());
         ChildCareEvent childCareEvent = new ChildCareEvent(DTO.getName(), DTO.getStartTime(), DTO.getEndTime(), DTO.getChildren(), location);
         locationRepository.save(location);
         childCareEventRepository.save(childCareEvent);
+        return DTO;
     }
 
     @GetMapping("/{id}")
