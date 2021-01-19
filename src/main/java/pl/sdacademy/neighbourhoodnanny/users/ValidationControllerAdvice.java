@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny;
+package pl.sdacademy.neighbourhoodnanny.users;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
