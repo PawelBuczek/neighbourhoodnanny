@@ -27,10 +27,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .httpBasic()
                 .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
+//                .authorizeRequests()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -38,11 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user1")
-//                .password("pass1")
-//                .roles("USER");
-        auth.userDetailsService(userService);
+        auth.inMemoryAuthentication()
+                .withUser("user1")
+                .password("pass1")
+                .roles("USER");
+//        auth.userDetailsService(userService);
     }
 
     @Bean
