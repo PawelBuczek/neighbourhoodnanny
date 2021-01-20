@@ -48,21 +48,27 @@ public class ChildController {
         return babysitter.getChildren();
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    @GetMapping("/getByUser")
+    public List<Child> getByUser() {
+        Babysitter babysitter = getBabysitterFromLoggedUser();
+        assert babysitter != null;
+        return babysitter.getChildren();
+    }
 
+    private Babysitter getBabysitterFromLoggedUser() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByUsername(username).orElse(null);
-        Babysitter babysitter = babysitterRepository.findByUser(user).orElse(null);
+        return babysitterRepository.findByUser(user).orElse(null);
+    }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        Babysitter babysitter = getBabysitterFromLoggedUser();
         assert babysitter != null;
-        System.out.println(System.lineSeparator() + babysitter + System.lineSeparator());
         Child child = childRepository.findById(id).orElse(null);
         babysitter.removeChild(child);
-        System.out.println(System.lineSeparator() + child + System.lineSeparator());
-        System.out.println(System.lineSeparator() + babysitter + System.lineSeparator());
 //        childRepository.deleteById(id);   //this was not only difficult, but also stupid
     }
 
