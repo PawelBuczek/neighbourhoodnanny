@@ -41,8 +41,8 @@ public class DbInit {
         childRepository.save(child2);
         childRepository.save(child3);
 
-        User user1 = new User("pablo", "qweasdzxc123");
-        User user2 = new User("kasia123", "cxzdsaewq321");
+        User user1 = new User("pablo", "qweasdzxc123", "ROLE_ANONYMOUS");
+        User user2 = new User("kasia123", "cxzdsaewq321", "ROLE_ANONYMOUS");
         userRepository.save(user1);
         userRepository.save(user2);
 
