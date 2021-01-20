@@ -38,6 +38,11 @@ public class BabysitterController {
         return babysitterRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/{email}")
+    public Babysitter getById(@PathVariable String email) {
+        return babysitterRepository.findByEmail(email).orElse(null);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         babysitterRepository.deleteById(id);
