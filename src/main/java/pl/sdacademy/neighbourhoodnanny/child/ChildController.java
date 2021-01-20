@@ -1,7 +1,14 @@
 package pl.sdacademy.neighbourhoodnanny.child;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pl.sdacademy.neighbourhoodnanny.babysitter.Babysitter;
+import pl.sdacademy.neighbourhoodnanny.babysitter.BabysitterRepository;
+import pl.sdacademy.neighbourhoodnanny.users.User;
+import pl.sdacademy.neighbourhoodnanny.users.UserRepository;
 
 import java.util.List;
 
@@ -10,9 +17,13 @@ import java.util.List;
 @RequestMapping("/child")
 public class ChildController {
     ChildRepository childRepository;
+    BabysitterRepository babysitterRepository;
+    UserRepository userRepository;
 
-    public ChildController(ChildRepository childRepository) {
+    public ChildController(ChildRepository childRepository, BabysitterRepository babysitterRepository, UserRepository userRepository) {
         this.childRepository = childRepository;
+        this.babysitterRepository = babysitterRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -30,9 +41,35 @@ public class ChildController {
         return childRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/getByParent/{id}")
+    public List<Child> getByParentId(@PathVariable long id) {
+        Babysitter babysitter = babysitterRepository.findById(id).orElse(null);
+        assert babysitter != null;
+        return babysitter.getChildren();
+    }
+
+    @GetMapping("/getByUser")
+    public List<Child> getByUser() {
+        Babysitter babysitter = getBabysitterFromLoggedUser();
+        assert babysitter != null;
+        return babysitter.getChildren();
+    }
+
+    private Babysitter getBabysitterFromLoggedUser() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username).orElse(null);
+        return babysitterRepository.findByUser(user).orElse(null);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        childRepository.deleteById(id);
+        Babysitter babysitter = getBabysitterFromLoggedUser();
+        assert babysitter != null;
+        Child child = childRepository.findById(id).orElse(null);
+        babysitter.removeChild(child);
+//        childRepository.deleteById(id);   //this was not only difficult, but also stupid
     }
 
     @PutMapping("/{id}")

@@ -1,5 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.babysitter;
 
+import org.hibernate.annotations.Cascade;
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.users.User;
@@ -29,6 +30,7 @@ public class Babysitter {
     @OneToMany
     private List<ChildCareEvent> eventList;
     @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Child> children;
 
 
