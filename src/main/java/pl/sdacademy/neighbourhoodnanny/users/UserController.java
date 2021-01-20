@@ -47,7 +47,7 @@ public class UserController {
                 .findFirst()
                 .orElseThrow()
                 .getAuthority();
-        User user = new User(userBabysitterDTO.getUsername(), userBabysitterDTO.getPassword(), role);
+        User user = new User(userBabysitterDTO.getUsername(), userBabysitterDTO.getPassword(), "ROLE_USER");
         Babysitter babysitter = new Babysitter(user, userBabysitterDTO.getFirstName(), userBabysitterDTO.getLastName(), userBabysitterDTO.getPhoneNumber(), userBabysitterDTO.getEmail());
         userRepository.save(user);
         babysitterRepository.save(babysitter);
