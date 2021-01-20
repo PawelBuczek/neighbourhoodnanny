@@ -2,6 +2,7 @@ package pl.sdacademy.neighbourhoodnanny.babysitter;
 
 import pl.sdacademy.neighbourhoodnanny.child.Child;
 import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
+import pl.sdacademy.neighbourhoodnanny.users.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,6 +15,8 @@ public class Babysitter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    User user;
     @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String firstName;
     @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
@@ -29,7 +32,8 @@ public class Babysitter {
     private List<Child> children;
 
 
-    public Babysitter(String firstName, String lastName, String phoneNumber, String email, List<ChildCareEvent> eventList, List<Child> children) {
+    public Babysitter(User user, String firstName, String lastName, String phoneNumber, String email, List<ChildCareEvent> eventList, List<Child> children) {
+        this.user = user;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -38,7 +42,16 @@ public class Babysitter {
         this.children = children;
     }
 
-    public Babysitter(String firstName, String lastName, String phoneNumber, String email) {
+    public Babysitter(User user, String firstName, String lastName, String phoneNumber, String email) {
+        this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.eventList = new ArrayList<>();
+        this.children = new ArrayList<>();
+
+    }public Babysitter(String firstName, String lastName, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -56,6 +69,14 @@ public class Babysitter {
 
     public void removeChild(Child child) {
         children.remove(child);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -108,11 +129,13 @@ public class Babysitter {
     public String toString() {
         return "Babysitter{" +
                 "id=" + id +
+                ", user=" + user +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", eMail='" + email + '\'' +
+                ", email='" + email + '\'' +
                 ", eventList=" + eventList +
+                ", children=" + children +
                 '}';
     }
 

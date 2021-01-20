@@ -9,6 +9,8 @@ import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEvent;
 import pl.sdacademy.neighbourhoodnanny.childcareevent.ChildCareEventRepository;
 import pl.sdacademy.neighbourhoodnanny.location.Location;
 import pl.sdacademy.neighbourhoodnanny.location.LocationRepository;
+import pl.sdacademy.neighbourhoodnanny.users.User;
+import pl.sdacademy.neighbourhoodnanny.users.UserRepository;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -20,12 +22,14 @@ public class DbInit {
     private final ChildRepository childRepository;
     private final ChildCareEventRepository childCareEventRepository;
     private final LocationRepository locationRepository;
+    private final UserRepository userRepository;
 
-    public DbInit(BabysitterRepository babysitterRepository, ChildRepository childRepository, ChildCareEventRepository childCareEventRepository, LocationRepository locationRepository) {
+    public DbInit(BabysitterRepository babysitterRepository, ChildRepository childRepository, ChildCareEventRepository childCareEventRepository, LocationRepository locationRepository, UserRepository userRepository) {
         this.babysitterRepository = babysitterRepository;
         this.childRepository = childRepository;
         this.childCareEventRepository = childCareEventRepository;
         this.locationRepository = locationRepository;
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
@@ -37,11 +41,16 @@ public class DbInit {
         childRepository.save(child2);
         childRepository.save(child3);
 
+        User user1 = new User("pablo", "qweasdzxc123");
+        User user2 = new User("kasia123", "cxzdsaewq321");
+        userRepository.save(user1);
+        userRepository.save(user2);
+
         Babysitter babysitter1 = new Babysitter(
-                "Pawel", "Buczek", "123456789", "pawel.buczek@email.com"
+                user1, "Pawel", "Buczek", "123456789", "pawel.buczek@email.com"
         );
         Babysitter babysitter2 = new Babysitter(
-                "Kasia", "Gagucka", "123123123", "example@email.com"
+                user2, "Kasia", "Gagucka", "123123123", "example@email.com"
         );
         babysitter1.addChild(child1);
         babysitter1.addChild(child2);

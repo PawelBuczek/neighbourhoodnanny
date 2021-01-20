@@ -1,4 +1,4 @@
-package pl.sdacademy.neighbourhoodnanny.users;
+package pl.sdacademy.neighbourhoodnanny;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,9 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.sdacademy.neighbourhoodnanny.users.UserService;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private UserService userService;
+
+    public SecurityConfiguration(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -32,11 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1")
-                .password("pass1")
-                .roles("USER");
-
+//        auth.inMemoryAuthentication()
+//                .withUser("user1")
+//                .password("pass1")
+//                .roles("USER");
+        auth.userDetailsService(userService);
     }
 
     @Bean
