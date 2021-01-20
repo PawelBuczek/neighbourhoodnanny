@@ -4,7 +4,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 public class UserBabysitterDTO {
+    @Size(min = 3, max = 15, message = "has to be between 3 and 15 characters")
     private String username;
+    @Size(min = 5, message = "has to be at least 5 characters")
     private String password;
     @Size(min = 1,max = 100, message = "has to be between 1 and 100 characters")
     private String firstName;

@@ -40,13 +40,13 @@ public class UserController {
 
     @PostMapping("/user")
     public UserBabysitterDTO addUserWithBabysitter(@Validated @RequestBody UserBabysitterDTO userBabysitterDTO) {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-        String role = authentication.getAuthorities()
-                .stream()
-                .findFirst()
-                .orElseThrow()
-                .getAuthority();
+//        SecurityContext securityContext = SecurityContextHolder.getContext();
+//        Authentication authentication = securityContext.getAuthentication();
+//        String role = authentication.getAuthorities()
+//                .stream()
+//                .findFirst()
+//                .orElseThrow()
+//                .getAuthority();
         User user = new User(userBabysitterDTO.getUsername(), userBabysitterDTO.getPassword(), "ROLE_USER");
         Babysitter babysitter = new Babysitter(user, userBabysitterDTO.getFirstName(), userBabysitterDTO.getLastName(), userBabysitterDTO.getPhoneNumber(), userBabysitterDTO.getEmail());
         userRepository.save(user);
