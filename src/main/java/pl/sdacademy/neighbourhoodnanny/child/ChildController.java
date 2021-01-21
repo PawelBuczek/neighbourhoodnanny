@@ -36,6 +36,16 @@ public class ChildController {
         return childRepository.save(child);
     }
 
+    @PostMapping("/addForLoggedUser")
+    public Child addForLoggedUser(@RequestBody Child child) {
+        Babysitter babysitter = getBabysitterFromLoggedUser();
+        assert babysitter != null;
+        Child savedChild = childRepository.save(child);
+        babysitter.addChild(savedChild);
+        babysitterRepository.save(babysitter);
+        return savedChild;
+    }
+
     @GetMapping("/{id}")
     public Child getById(@PathVariable long id) {
         return childRepository.findById(id).orElse(null);
@@ -55,20 +65,13 @@ public class ChildController {
         return babysitter.getChildren();
     }
 
-    private Babysitter getBabysitterFromLoggedUser() {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-        String username = authentication.getName();
-        User user = userRepository.findByUsername(username).orElse(null);
-        return babysitterRepository.findByUser(user).orElse(null);
-    }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         Babysitter babysitter = getBabysitterFromLoggedUser();
         assert babysitter != null;
         Child child = childRepository.findById(id).orElse(null);
-        babysitter.removeChild(child);System.out.println(System.lineSeparator() + babysitter + System.lineSeparator());
+        babysitter.removeChild(child);
+        System.out.println(System.lineSeparator() + babysitter + System.lineSeparator());
 //        childRepository.deleteById(id);   //this was not only difficult, but also stupid
         babysitterRepository.save(babysitter);
     }
@@ -82,5 +85,13 @@ public class ChildController {
             return childRepository.save(child);
         });
         return newChild;
+    }
+
+    private Babysitter getBabysitterFromLoggedUser() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username).orElse(null);
+        return babysitterRepository.findByUser(user).orElse(null);
     }
 }
