@@ -1,9 +1,6 @@
 package pl.sdacademy.neighbourhoodnanny.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pl.sdacademy.neighbourhoodnanny.babysitter.Babysitter;
 import pl.sdacademy.neighbourhoodnanny.babysitter.BabysitterRepository;
