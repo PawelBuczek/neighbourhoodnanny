@@ -68,8 +68,9 @@ public class ChildController {
         Babysitter babysitter = getBabysitterFromLoggedUser();
         assert babysitter != null;
         Child child = childRepository.findById(id).orElse(null);
-        babysitter.removeChild(child);
+        babysitter.removeChild(child);System.out.println(System.lineSeparator() + babysitter + System.lineSeparator());
 //        childRepository.deleteById(id);   //this was not only difficult, but also stupid
+        babysitterRepository.save(babysitter);
     }
 
     @PutMapping("/{id}")
