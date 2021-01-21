@@ -38,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/location/**").authenticated()
                 .antMatchers("/user").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/mailer").permitAll()
+                .antMatchers("/mailer/**").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
